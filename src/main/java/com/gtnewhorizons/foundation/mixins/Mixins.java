@@ -13,7 +13,7 @@ import com.gtnewhorizon.gtnhlib.mixin.TargetedMod;
 public enum Mixins implements IMixins {
 
     CLIENT_ONLY(new MixinBuilder("Client Only Mixins").addTargetedMod(TargetedMod.VANILLA)
-        .setSide(Side.BOTH)
+        .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
         .setApplyIf(() -> true)
         .addMixinClasses("client.MixinChunk")),
