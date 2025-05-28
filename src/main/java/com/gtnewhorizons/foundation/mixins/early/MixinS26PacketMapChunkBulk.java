@@ -30,67 +30,21 @@ public class MixinS26PacketMapChunkBulk {
         }
     }
 
-    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 5), ordinal = 4 // This should target
-                                                                                                  // i1
-    )
+    // TODO: Convert these all to one mixin applied on a slice, this is easier and I'm lazy
+    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 5), ordinal = 4)
     private int foundation$modifyI1Value1(int original, @Local(ordinal = 1) int j) {
-        return s21Sizes[j]; // Or whatever size you want to use
+        return s21Sizes[j];
     }
 
-    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 6), ordinal = 4 // This should target
-                                                                                                  // i1
-    )
+    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 6), ordinal = 4)
     private int foundation$modifyI1Value2(int original, @Local(ordinal = 1) int j) {
-        return s21Sizes[j]; // Or whatever size you want to use
+        return s21Sizes[j];
     }
 
-    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 7), ordinal = 4 // This should target
-                                                                                                  // i1
-    )
+    @ModifyVariable(method = "readPacketData", at = @At(value = "LOAD", ordinal = 7), ordinal = 4)
     private int foundation$modifyI1Value3(int original, @Local(ordinal = 1) int j) {
-        return s21Sizes[j]; // Or whatever size you want to use
+        return s21Sizes[j];
     }
-
-    // @ModifyArg(
-    // method = "readPacketData",
-    // at = @At(
-    // value = "NEW",
-    // target = "([B)V",
-    // ordinal = 1 // This targets the specific byte[] creation
-    // )
-    // )
-    // private int foundation$modifyByteArraySize(int originalSize, @Local(ordinal = 1) int j) {
-    // // Modify the size here
-    // return s21Sizes[j]; // For example, doubles the size
-    // }
-
-    // @ModifyArg(
-    // method = "readPacketData",
-    // at = @At(
-    // value = "INVOKE",
-    // target = "Ljava/lang/System;arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V",
-    // ordinal = 1 // This targets the specific arraycopy call
-    // ),
-    // index = 4 // This targets the length parameter (5th argument)
-    // )
-    // private int foundation$modifyArrayCopyLength(int originalLength, @Local(ordinal = 1) int j) {
-    // // Modify the copy length here
-    // return s21Sizes[j]; // For example, doubles the length
-    // }
-    //
-    // @ModifyVariable(
-    // method = "readPacketData",
-    // at = @At(
-    // value = "INVOKE_ASSIGN",
-    // target = "Ljava/lang/System;arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V",
-    // ordinal = 1
-    // ),
-    // ordinal = 0 // This targets the 'i' variable
-    // )
-    // private int foundation$modifyIValue(int originalValue, @Local(ordinal = 1) int j) {
-    // // Modify i here
-    // return s21Sizes[j]; // Or whatever value you want to use
-    // }
 
     @Inject(
         method = "writePacketData",

@@ -36,6 +36,10 @@ public class MixinChunk {
     @Shadow
     public boolean isTerrainPopulated;
 
+    /**
+     * @author Cleptomania
+     * @reason If something is targeting this, it is guaranteed not gonna work with Foundation
+     */
     @Overwrite
     public void fillChunk(byte[] data, int flagSubChunks, int flagMsb, boolean sendUpdates) {
         Chunk thisObject = (Chunk) (Object) this;

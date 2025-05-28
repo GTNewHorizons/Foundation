@@ -17,11 +17,19 @@ public class MixinS21PacketChunkData {
     @Shadow
     private static byte[] field_149286_i = null; // Byte array for entire chunk data
 
+    /**
+     * @author Cleptomania
+     * @reason If something is targeting this, it is guaranteed not gonna work with Foundation
+     */
     @Overwrite
     public static int func_149275_c() {
         return HandlerRegistry.getChunkPacketBytes();
     }
 
+    /**
+     * @author Cleptomania
+     * @reason If something is targeting this, it is guaranteed not gonna work with Foundation
+     */
     @Overwrite
     public static S21PacketChunkData.Extracted func_149269_a(Chunk chunk, boolean sendUpdates, int flagSubChunks) {
         if (field_149286_i == null) {
