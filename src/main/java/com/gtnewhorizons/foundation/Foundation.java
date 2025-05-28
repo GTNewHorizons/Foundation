@@ -3,7 +3,12 @@ package com.gtnewhorizons.foundation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gtnewhorizons.foundation.builtin.*;
+import com.gtnewhorizons.foundation.builtin.BiomeHandler;
+import com.gtnewhorizons.foundation.builtin.BlockLSBHandler;
+import com.gtnewhorizons.foundation.builtin.BlockLightHandler;
+import com.gtnewhorizons.foundation.builtin.BlockMSBHandler;
+import com.gtnewhorizons.foundation.builtin.MetadataHandler;
+import com.gtnewhorizons.foundation.builtin.SkylightHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
