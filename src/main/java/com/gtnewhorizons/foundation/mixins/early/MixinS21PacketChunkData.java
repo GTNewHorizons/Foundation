@@ -55,8 +55,6 @@ public class MixinS21PacketChunkData {
 
         int bytes = HandlerRegistry.writeChunkPackets(chunk, sendUpdates, flagSubChunks, field_149286_i);
 
-        Foundation.LOG.info("The Chunk Packet bytes is: " + bytes);
-
         extracted.field_150282_a = new byte[bytes];
         System.arraycopy(field_149286_i, 0, extracted.field_150282_a, 0, bytes);
         return extracted;

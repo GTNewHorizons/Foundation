@@ -7,6 +7,7 @@ import java.util.Set;
 import com.gtnewhorizon.gtnhlib.mixin.IMixins;
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 import com.gtnewhorizons.foundation.Tags;
+import com.gtnewhorizons.foundation.core.transformers.S22ConstructorTransformer;
 import com.gtnewhorizons.foundation.mixins.Mixins;
 
 import cpw.mods.fml.common.DummyModContainer;
@@ -14,6 +15,7 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
+@IFMLLoadingPlugin.TransformerExclusions({ "com.gtnewhorizons.foundation.core" })
 public class FoundationCore extends DummyModContainer implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     public static final String[] DEFAULT_TRANSFORMERS = new String[0];
@@ -29,7 +31,7 @@ public class FoundationCore extends DummyModContainer implements IFMLLoadingPlug
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] {};
+        return new String[] {FoundationTransformer.class.getName()};
     }
 
     @Override

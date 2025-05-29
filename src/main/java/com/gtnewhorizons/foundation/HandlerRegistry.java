@@ -4,6 +4,11 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.foundation.api.BlockPacketHandler;
+import com.gtnewhorizons.foundation.mixins.interfaces.IMixinS23PacketBlockChange;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.S22PacketMultiBlockChange;
+import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.world.chunk.Chunk;
 
 import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
@@ -11,12 +16,47 @@ import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
 public class HandlerRegistry {
 
     private static final List<ChunkPacketHandler> chunkPacketHandlers = new ArrayList<>();
+    private static final List<BlockPacketHandler> blockPacketHandlers = new ArrayList<>();
 
     private static int chunkPacketBytes = 0;
 
     public static void registerChunkPacketHandler(ChunkPacketHandler handler) {
         chunkPacketBytes += handler.maxBytesPerChunk();
         chunkPacketHandlers.add(handler);
+    }
+
+    public static void registerBlockPacketHandler(BlockPacketHandler handler) {
+        blockPacketHandlers.add(handler);
+    }
+
+    public static void writeS23Packets(S23PacketBlockChange packet, PacketBuffer data) {
+        IMixinS23PacketBlockChange mixinPacket = (IMixinS23PacketBlockChange) packet;
+        BlockPacketInfo info = mixinPacket.createBlockPacketInfo();
+        for (BlockPacketHandler handler : blockPacketHandlers) {
+            handler.writeBlockPacket(info, data);
+        }
+        mixinPacket.syncBlockPacketInfo(info);
+    }
+
+    public static void readS23Packets(S23PacketBlockChange packet, PacketBuffer data) {
+        IMixinS23PacketBlockChange mixinPacket = (IMixinS23PacketBlockChange) packet;
+        BlockPacketInfo info = mixinPacket.createBlockPacketInfo();
+        for (BlockPacketHandler handler : blockPacketHandlers) {
+            handler.readBlockPacket(info, data);
+        }
+        mixinPacket.syncBlockPacketInfo(info);
+    }
+
+    public static void writeS22Packets(BlockPacketInfo info, PacketBuffer data) {
+        for (BlockPacketHandler handler : blockPacketHandlers) {
+            handler.writeBlockPacket(info, data);
+        }
+    }
+
+    public static void readS22Packets(BlockPacketInfo info, PacketBuffer data) {
+        for (BlockPacketHandler handler : blockPacketHandlers) {
+            handler.readBlockPacket(info, data);
+        }
     }
 
     /**

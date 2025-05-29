@@ -26,12 +26,22 @@ public class Foundation {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        HandlerRegistry.registerChunkPacketHandler(new BlockLSBHandler());
-        HandlerRegistry.registerChunkPacketHandler(new MetadataHandler());
-        HandlerRegistry.registerChunkPacketHandler(new BlockLightHandler());
-        HandlerRegistry.registerChunkPacketHandler(new SkylightHandler());
-        HandlerRegistry.registerChunkPacketHandler(new BlockMSBHandler());
-        HandlerRegistry.registerChunkPacketHandler(new BiomeHandler());
+        BlockLSBHandler blockLSBHandler = new BlockLSBHandler();
+        MetadataHandler metadataHandler = new MetadataHandler();
+        BlockLightHandler blockLightHandler = new BlockLightHandler();
+        SkylightHandler skylightHandler = new SkylightHandler();
+        BlockMSBHandler blockMSBHandler = new BlockMSBHandler();
+        BiomeHandler biomeHandler = new BiomeHandler();
+
+        HandlerRegistry.registerChunkPacketHandler(blockLSBHandler);
+        HandlerRegistry.registerChunkPacketHandler(metadataHandler);
+        HandlerRegistry.registerChunkPacketHandler(blockLightHandler);
+        HandlerRegistry.registerChunkPacketHandler(skylightHandler);
+        HandlerRegistry.registerChunkPacketHandler(blockMSBHandler);
+        HandlerRegistry.registerChunkPacketHandler(biomeHandler);
+
+        HandlerRegistry.registerBlockPacketHandler(blockLSBHandler);
+        HandlerRegistry.registerBlockPacketHandler(metadataHandler);
     }
 
 }

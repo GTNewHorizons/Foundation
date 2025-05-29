@@ -2,12 +2,16 @@ package com.gtnewhorizons.foundation.builtin;
 
 import java.nio.ByteBuffer;
 
+import com.gtnewhorizons.foundation.BlockPacketInfo;
+import com.gtnewhorizons.foundation.api.BlockPacketHandler;
+import net.minecraft.block.Block;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 
 import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
 
-public class BlockLSBHandler implements ChunkPacketHandler {
+public class BlockLSBHandler implements ChunkPacketHandler, BlockPacketHandler {
 
     @Override
     public int maxBytesPerChunk() {
@@ -36,5 +40,15 @@ public class BlockLSBHandler implements ChunkPacketHandler {
                 buffer.get(aextendedblockstorage[i].getBlockLSBArray());
             }
         }
+    }
+
+    @Override
+    public void writeBlockPacket(BlockPacketInfo info, PacketBuffer data) {
+        data.writeVarIntToBuffer(Block.getIdFromBlock(info.getBlock()));
+    }
+
+    @Override
+    public void readBlockPacket(BlockPacketInfo info, PacketBuffer data) {
+        info.setBlock(Block.getBlockById(data.readVarIntFromBuffer()));
     }
 }

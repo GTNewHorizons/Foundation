@@ -16,13 +16,21 @@ public enum Mixins implements IMixins {
         .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
         .setApplyIf(() -> true)
-        .addMixinClasses("client.MixinChunk")),
+        .addMixinClasses(
+            "client.MixinChunk",
+            "client.MixinNetHandlerPlayClient"
+        )),
 
     PACKETS(new MixinBuilder("Packet Mixins").addTargetedMod(TargetedMod.VANILLA)
         .setSide(Side.BOTH)
         .setPhase(Phase.EARLY)
         .setApplyIf(() -> true)
-        .addMixinClasses("MixinS21PacketChunkData", "MixinS26PacketMapChunkBulk"));
+        .addMixinClasses(
+            "MixinS21PacketChunkData",
+            "MixinS22PacketMultiBlockChange",
+            "MixinS23PacketBlockChange",
+            "MixinS26PacketMapChunkBulk"
+        ));
 
     private final List<String> mixinClasses;
     private final Supplier<Boolean> applyIf;

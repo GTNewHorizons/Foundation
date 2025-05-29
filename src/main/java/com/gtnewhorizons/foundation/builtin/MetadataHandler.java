@@ -2,13 +2,18 @@ package com.gtnewhorizons.foundation.builtin;
 
 import java.nio.ByteBuffer;
 
+import com.gtnewhorizons.foundation.BlockPacketInfo;
+import com.gtnewhorizons.foundation.api.BlockPacketHandler;
+import net.minecraft.block.Block;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.NibbleArray;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 
 import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
 
-public class MetadataHandler implements ChunkPacketHandler {
+public class MetadataHandler implements ChunkPacketHandler, BlockPacketHandler {
 
     @Override
     public int maxBytesPerChunk() {
@@ -36,5 +41,15 @@ public class MetadataHandler implements ChunkPacketHandler {
                 buffer.get(nibblearray.data);
             }
         }
+    }
+
+    @Override
+    public void writeBlockPacket(BlockPacketInfo info, PacketBuffer data) {
+        data.writeByte(info.getMetadata());
+    }
+
+    @Override
+    public void readBlockPacket(BlockPacketInfo info, PacketBuffer data) {
+        info.setMetadata(data.readUnsignedByte());
     }
 }
