@@ -2,15 +2,13 @@ package com.gtnewhorizons.foundation.builtin;
 
 import java.nio.ByteBuffer;
 
-import com.gtnewhorizons.foundation.BlockPacketInfo;
-import com.gtnewhorizons.foundation.api.BlockPacketHandler;
-import net.minecraft.block.Block;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.NibbleArray;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 
+import com.gtnewhorizons.foundation.BlockPacketInfo;
+import com.gtnewhorizons.foundation.api.BlockPacketHandler;
 import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
 
 public class MetadataHandler implements ChunkPacketHandler, BlockPacketHandler {

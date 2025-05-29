@@ -7,7 +7,6 @@ import java.util.Set;
 import com.gtnewhorizon.gtnhlib.mixin.IMixins;
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 import com.gtnewhorizons.foundation.Tags;
-import com.gtnewhorizons.foundation.core.transformers.S22ConstructorTransformer;
 import com.gtnewhorizons.foundation.mixins.Mixins;
 
 import cpw.mods.fml.common.DummyModContainer;
@@ -31,7 +30,7 @@ public class FoundationCore extends DummyModContainer implements IFMLLoadingPlug
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] {FoundationTransformer.class.getName()};
+        return new String[] { FoundationTransformer.class.getName() };
     }
 
     @Override

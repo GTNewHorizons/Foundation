@@ -4,14 +4,13 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gtnewhorizons.foundation.api.BlockPacketHandler;
-import com.gtnewhorizons.foundation.mixins.interfaces.IMixinS23PacketBlockChange;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.S22PacketMultiBlockChange;
 import net.minecraft.network.play.server.S23PacketBlockChange;
 import net.minecraft.world.chunk.Chunk;
 
+import com.gtnewhorizons.foundation.api.BlockPacketHandler;
 import com.gtnewhorizons.foundation.api.ChunkPacketHandler;
+import com.gtnewhorizons.foundation.mixins.interfaces.IMixinS23PacketBlockChange;
 
 public class HandlerRegistry {
 

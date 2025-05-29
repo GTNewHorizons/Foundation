@@ -1,11 +1,12 @@
 package com.gtnewhorizons.foundation.core;
 
+import java.util.List;
+
 import net.minecraft.launchwrapper.IClassTransformer;
+
 import org.spongepowered.asm.lib.ClassReader;
 import org.spongepowered.asm.lib.tree.ClassNode;
 import org.spongepowered.asm.transformers.MixinClassWriter;
-
-import java.util.List;
 
 public class FoundationTransformer implements IClassTransformer {
 
@@ -29,7 +30,8 @@ public class FoundationTransformer implements IClassTransformer {
             transformer.transform(cn);
         }
 
-        final MixinClassWriter cw = new MixinClassWriter(MixinClassWriter.COMPUTE_MAXS | MixinClassWriter.COMPUTE_FRAMES);
+        final MixinClassWriter cw = new MixinClassWriter(
+            MixinClassWriter.COMPUTE_MAXS | MixinClassWriter.COMPUTE_FRAMES);
         cn.accept(cw);
         return cw.toByteArray();
     }

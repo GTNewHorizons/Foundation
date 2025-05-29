@@ -1,12 +1,13 @@
 package com.gtnewhorizons.foundation.core;
 
-import com.gtnewhorizons.foundation.core.transformers.S22ConstructorTransformer;
-import org.spongepowered.asm.lib.tree.ClassNode;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.spongepowered.asm.lib.tree.ClassNode;
+
+import com.gtnewhorizons.foundation.core.transformers.S22ConstructorTransformer;
 
 public enum FoundationTransformers {
 
@@ -19,7 +20,8 @@ public enum FoundationTransformers {
         for (final FoundationTransformers entry : values()) {
             for (final String className : entry.transformer.getTargetClasses()) {
                 FoundationTransformers.transformers.putIfAbsent(className, new ArrayList<>());
-                FoundationTransformers.transformers.get(className).add(entry);
+                FoundationTransformers.transformers.get(className)
+                    .add(entry);
             }
         }
     }
@@ -32,6 +34,8 @@ public enum FoundationTransformers {
         this.transformer = transformer;
     }
 
-    public void transform(final ClassNode cn) { transformer.transform(cn); }
+    public void transform(final ClassNode cn) {
+        transformer.transform(cn);
+    }
 
 }

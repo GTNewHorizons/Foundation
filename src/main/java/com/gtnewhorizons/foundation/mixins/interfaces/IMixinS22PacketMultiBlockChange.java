@@ -1,7 +1,8 @@
 package com.gtnewhorizons.foundation.mixins.interfaces;
 
-import com.gtnewhorizons.foundation.BlockPacketInfo;
 import net.minecraft.world.chunk.Chunk;
+
+import com.gtnewhorizons.foundation.BlockPacketInfo;
 
 public interface IMixinS22PacketMultiBlockChange {
 

@@ -1,14 +1,16 @@
 package com.gtnewhorizons.foundation.mixins.early;
 
-import com.gtnewhorizons.foundation.BlockPacketInfo;
-import com.gtnewhorizons.foundation.HandlerRegistry;
-import com.gtnewhorizons.foundation.mixins.interfaces.IMixinS23PacketBlockChange;
 import net.minecraft.block.Block;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.S23PacketBlockChange;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+
+import com.gtnewhorizons.foundation.BlockPacketInfo;
+import com.gtnewhorizons.foundation.HandlerRegistry;
+import com.gtnewhorizons.foundation.mixins.interfaces.IMixinS23PacketBlockChange;
 
 @Mixin(S23PacketBlockChange.class)
 public abstract class MixinS23PacketBlockChange implements IMixinS23PacketBlockChange {
